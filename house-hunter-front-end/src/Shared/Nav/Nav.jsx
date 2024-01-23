@@ -1,10 +1,23 @@
+import { useState } from 'react';
+
 const Nav = () => {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden text-white"
+              onClick={toggleDropdown}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -20,38 +33,49 @@ const Nav = () => {
                 />
               </svg>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a>Home</a>
-              </li>
-              <li>
-                <a>LogIn</a>
-              </li>
-              <li>
-                <a>Registration</a>
-              </li>
-            </ul>
+            {isDropdownOpen && (
+              <ul
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52"
+              >
+                <li>
+                  <a className="text-purple-700">Home</a>
+                </li>
+                <li>
+                  <a className="text-purple-700">LogIn</a>
+                </li>
+                <li>
+                  <a className="text-purple-700">Registration</a>
+                </li>
+              </ul>
+            )}
           </div>
-          <a className="btn btn-ghost text-xl">House Hunter</a>
+          <a href="/" className="btn btn-ghost text-white text-xl">
+            House Hunter
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Home</a>
+              <a href="/" className="text-white hover:text-gray-200">
+                Home
+              </a>
             </li>
             <li>
-              <a>LogIn</a>
+              <a href="/login" className="text-white hover:text-gray-200">
+                LogIn
+              </a>
             </li>
             <li>
-              <a>Registration</a>
+              <a href="/registration" className="text-white hover:text-gray-200">
+                Registration
+              </a>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a href="/" className="btn bg-white text-purple-700 hover:bg-gray-200">
+            Button
+          </a>
         </div>
       </div>
     </div>
